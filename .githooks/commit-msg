@@ -1,0 +1,12 @@
+#!/bin/sh
+
+commit_msg=$(cat "$1")
+pattern="^(feat|fix|chore|docs|test|refactor|style|ci|perf|build)(\(.+\))?: .{3,}"
+
+if ! echo "$commit_msg" | grep -qE "$pattern"; then
+    echo ""
+    echo " Неправильный формат коммита!"
+    echo "   Например: feat: add login"
+    echo ""
+    exit 1
+fi

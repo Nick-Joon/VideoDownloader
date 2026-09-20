@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo " Запускаю тесты перед push..."
+
+dotnet test --verbosity quiet
+
+if [ $? -ne 0 ]; then
+    echo " Тесты упали — push заблокирован"
+    exit 1
+fi
+
+echo " Тесты прошли"
